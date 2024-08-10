@@ -5,6 +5,7 @@ using UnityEngine;
 public class key : MonoBehaviour
 {
     private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +19,10 @@ public class key : MonoBehaviour
         //hacer flotar la llave en el aire de arriba a abajo
         movement.y = Mathf.Sin(Time.time * 3) * 0.25f;
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+
+
+       
     }
+
+   
 }

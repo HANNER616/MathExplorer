@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
@@ -10,22 +11,24 @@ public class Controller : MonoBehaviour
     public float rotationSpeed = 5f;
     float speedX, speedY;
     Rigidbody2D rb;
+    public bool hasAllKeys = false;
+
+    private int auxKeys = 0;
+
+    public GameLogic logica;
+    private GameObject[] objectsWithTag;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        objectsWithTag = GameObject.FindGameObjectsWithTag("Player");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("Player");
-        //speedX = Input.GetAxis("Horizontal") * moveSpeed;
-        //speedY = Input.GetAxis("Vertical") * moveSpeed;
-        //rb.velocity = new Vector2(speedX, speedY);
-
-       
+        
 
 
             if (Input.GetKey(KeyCode.A) || (Input.GetKey(KeyCode.LeftArrow)))
@@ -51,6 +54,39 @@ public class Controller : MonoBehaviour
 
        
 
+    }
+    
+    //Colision con la llave
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Key")){
+            int numKeys = logica.GetNumKeys;
+           
+            HandleCollision(collision.gameObject, numKeys);
+        }
+        
+    }
+
+    void HandleCollision(GameObject obj, int numeroLlaves)
+    {
+        
+        auxKeys++;
+        if (auxKeys == numeroLlaves)
+        {
+            hasAllKeys = true;
+            Debug.Log("Llave recogida");
+            Destroy(obj);
+        }
+    }
+
+    public bool HasAllKeys
+    {
+        get { return hasAllKeys; }
+    }
+
+    public int GetAuxKeys
+    {
+        get { return auxKeys; }
     }
 
 
