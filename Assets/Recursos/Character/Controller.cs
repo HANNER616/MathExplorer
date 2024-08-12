@@ -75,6 +75,7 @@ public class Controller : MonoBehaviour
         {
             hasAllKeys = true;
             Debug.Log("Llave recogida");
+            auxKeys = 0;
             Destroy(obj);
         }
     }
@@ -82,7 +83,10 @@ public class Controller : MonoBehaviour
     public bool HasAllKeys
     {
         get { return hasAllKeys; }
+        set { hasAllKeys = value; }
     }
+
+    
 
     public int GetAuxKeys
     {
