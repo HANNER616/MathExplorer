@@ -20,7 +20,7 @@ public class GameLogic : MonoBehaviour
         }
         else if (Nivel == "Level3")
         {
-            numKeys = 2;
+            numKeys = 1;
         }
         else if (Nivel == "Level4")
         {

@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    private void Awake()
+    private static UI instance;
+    void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);  
+        }
+        else
+        {
+            Destroy(gameObject); 
+        }
     }
     void Start()
     {

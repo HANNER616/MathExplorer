@@ -5,15 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
+    private static MainMenu instance;
+    public GameObject MainMenuUI;
     void Start()
     {
         
     }
 
-    private void Awake()
+    void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);  // No destruir al cargar una nueva escena
+        }
+        else
+        {
+            Destroy(gameObject);  // Destruir la nueva instancia creada
+        }
     }
 
 
@@ -38,9 +47,8 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Llendo al menu principal");
         SceneManager.LoadScene(0);
+        MainMenuUI.SetActive(true);
         
-
-
     }
 
     public void seleccionNivel1()

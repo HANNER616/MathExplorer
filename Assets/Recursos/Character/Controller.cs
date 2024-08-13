@@ -17,12 +17,13 @@ public class Controller : MonoBehaviour
 
     public GameLogic logica;
     private GameObject[] objectsWithTag;
+    private Quizz quizz;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         objectsWithTag = GameObject.FindGameObjectsWithTag("Player");
-
+        quizz = FindAnyObjectByType<Quizz>();
     }
 
     // Update is called once per frame
@@ -67,7 +68,9 @@ public class Controller : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Task"))
         {
-           
+            HandleCollision2(collision.gameObject);
+            quizz.MostrarPreguntaAleatoria();
+            quizz.setActive();
         }
         
     }
@@ -83,6 +86,11 @@ public class Controller : MonoBehaviour
             auxKeys = 0;
             Destroy(obj);
         }
+    }
+
+    void HandleCollision2(GameObject obj)
+    {
+          Destroy(obj);
     }
 
     public bool HasAllKeys
