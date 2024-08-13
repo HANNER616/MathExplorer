@@ -64,6 +64,11 @@ public class Controller : MonoBehaviour
            
             HandleCollision(collision.gameObject, numKeys);
         }
+
+        if (collision.gameObject.CompareTag("Task"))
+        {
+           
+        }
         
     }
 
