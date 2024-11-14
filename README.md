@@ -5,6 +5,13 @@
 - Editor de codigo, de preferencia VS 2022
 - Arranca hasta en tostadoras.
 
+## Pasos 
+- Abrir Unity hub
+- Clic en Add
+- Add project from disk
+- Seleccionar la carpeta descargada del repositorio
+
+
 
 ## Documentacion
 
